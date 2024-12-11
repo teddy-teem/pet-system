@@ -10,4 +10,28 @@ A hands on example of VPC using docker & NGNIX & node servers
 6. then back to the prev dir ```animal-domain/meow-service``` & build docker image with the name ```meow-service``` e.g ```docker build -t meow-service .```
 7. after that command ```docker compose up```.
 8. Do the 3-7 for plant-domain too.
-8. now test APIs using postman or any other tools. 
+8. now test APIs using postman or any other tools.
+
+
+### Plant VPC route
+```/flower/api/health
+/flower/api/poke/meow
+/flower/api/poke/human
+/flower/api/poke/me
+/flower/api/poke/fruit
+/fruit/api/health
+/fruit/api/poke/human 
+/fruit/api/poke/meow
+/fruit/api/poke/me
+/fruit/api/poke/flower
+```
+
+### Animal VPC route
+```/human/api/health
+/human/api/poke/meow
+/human/api/poke/me 
+/meow/api/health
+/meow/api/poke/human
+/meow/api/poke/me
+```
+
