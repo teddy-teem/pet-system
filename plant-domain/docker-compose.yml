@@ -1,0 +1,35 @@
+version: '3.9'
+services:
+  flower-service:
+    image: flower-service
+    networks:
+      - plant
+    ports:
+      - "6010:80"
+
+  fruit-service:
+    image: fruit-service
+    networks:
+      - plant
+    ports:
+      - "6011:80"
+
+  plant-nginx:
+    image: nginx:latest
+    container_name: plant-nginx
+    networks:
+      - plant
+    ports:
+      - "8081:80"  # Expose port 8080 on the host machine
+    volumes:
+      - ./nginx-plant.conf:/etc/nginx/nginx.conf:ro  # Mount the custom nginx.conf
+    depends_on:
+      - flower-service
+      - fruit-service
+
+networks:
+  plant:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.3.0/24
